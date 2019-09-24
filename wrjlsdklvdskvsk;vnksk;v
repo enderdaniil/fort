@@ -1,0 +1,75 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int den, mes, god, a;
+    cout<<"Vvedite den\n";
+    cin>>den;
+    cout<<"Vvedite mesiac\n";
+    cin>>mes;
+    cout<<"Vvedite god\n";
+    cin>>god;
+    string ned[7]{"среда", "четверг", "пятница", "суббота", "понедельник", "вторник"};
+    a=(god-1)*365+(abs(god-1)/4); //нахождение дней в прошедших годах
+    int dnim[12]{31,28,31,30,31,30,31,31,30,31,30,31};
+    if ((mes>12) or (mes<1))
+    {
+        cout<<"ERROR";
+    }
+    int d=abs(god)%4;
+    if ((den<1) or (den>31))
+    {
+        cout<<"ERROR";
+    }
+    if (mes==2)
+    {
+        if (d==0)
+        {
+            if ((den<1) or (den>29))
+            {
+                cout<<"ERROR";
+            }
+        }
+        else
+        {
+            if ((den<1) or (den>28))
+            {
+                cout<<"ERROR";
+            }
+        }
+    }
+    if (god%4==0)
+    {
+        dnim[1]=29;
+    }
+    int b=dnim[0];
+    for (int i=1; i<mes; i++) //нахождение дней в тек году
+    {
+        b+=dnim[i];
+    }
+    a+=b; //god+mesiac
+    a+=den;//vsio
+    int v=a%7;
+    if (god%4==0)
+    {
+        if (v<=5)
+        {
+            cout<<ned[a%7+2];
+        }
+        else
+        {
+            if (v==6)
+            {
+                cout<<ned[1];
+            }
+            else
+            {
+                cout<<ned[2];
+            }
+        }
+    }
+    else{
+        cout<<ned[a%7];
+    }
+    return 0;
+}
