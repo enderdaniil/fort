@@ -9,9 +9,6 @@ int main()
     cin>>mes;
     cout<<"Vvedite god\n";
     cin>>god;
-    string ned[7]{"piatnica", "subbota", "voskresenie", "понедельник", "вторник", "sreda", "chetverg"};
-    a=(god-1)*365+(abs(god-1)/4); //нахождение дней в прошедших годах
-    int dnim[12]{31,28,31,30,31,30,31,31,30,31,30,31};
     if ((mes>12) or (mes<1))
     {
         cout<<"ERROR";
@@ -38,17 +35,19 @@ int main()
             }
         }
     }
-    if (god%4==0)
+    if ((mes==4||mes==6||mes==8||mes==11) && den>=31)
+		{
+			cout<<"ERROR";
+		}
+    string ned[7]{"ponedelnik", "vtornik", "sreda", "chetverg", "piatnica", "subbota", "voskresenie"};
+    if (mes<3) 
     {
-        dnim[1]=29;
-    }
-    int b=dnim[0];
-    for (int i=1; i<mes; i++) //нахождение дней в тек году
-    {
-        b+=dnim[i];
-    }
-    a+=b; //god+mesiac
-    a+=den;//vsio
-    cout<<ned[a%7];
-    return 0;
+		--god;
+		mes+=10;
+	} 
+	else
+		mes-=2;
+	a=(((den+31*mes/12+god+god/4-god/100+god/400)-1)%7);
+	cout<<ned[a];
+	return 0;
 }
