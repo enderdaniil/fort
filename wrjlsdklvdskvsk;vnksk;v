@@ -14,17 +14,30 @@ int main()
 	cin >> god;
 	cout << "Vvedite vek\n";
 	cin >> vek;
-
-	god = vek * 100 + god;
-
+	if ((god < 0) || (god > 99))
+	{
+		cout << "ERROR";
+		return 0;
+	}
+    
+    if (god != 0)
+    {
+	    god = (vek - 1) * 100 + god;
+    }
+    else 
+    {
+        god = vek*100;
+    }
 	if ((mes > 12) or (mes < 1))
 	{
 		cout << "ERROR";
+		return 0;
 	}
 	int d = abs(god) % 4;
 	if ((den < 1) or (den > 31))
 	{
 		cout << "ERROR";
+		return 0;
 	}
 	if (mes == 2)
 	{
@@ -33,6 +46,7 @@ int main()
 			if ((den < 1) or (den > 29))
 			{
 				cout << "ERROR";
+				return 0;
 			}
 		}
 		else
@@ -40,13 +54,16 @@ int main()
 			if ((den < 1) or (den > 28))
 			{
 				cout << "ERROR";
+				return 0;
 			}
 		}
 	}
 	if ((mes == 4 || mes == 6 || mes == 8 || mes == 11) && den >= 31)
 	{
 		cout << "ERROR";
+		return 0;
 	}
+	
 	string ned[7]{ "ponedelnik", "vtornik", "sreda", "chetverg", "piatnica", "subbota", "voskresenie" };
 	if (mes < 3)
 	{
@@ -54,8 +71,14 @@ int main()
 		mes += 10;
 	}
 	else
+	{
 		mes -= 2;
+	}
+	
+	
 	a = (((den + 31 * mes / 12 + god + god / 4 - god / 100 + god / 400) - 1) % 7);
 	cout << ned[a];
+	
+	
 	return 0;
 }
