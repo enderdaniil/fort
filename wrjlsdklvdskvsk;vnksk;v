@@ -1,11 +1,11 @@
-
 #include <iostream>
 
 using namespace std;
 
 int main()
 {
-	int den, mes, god, a, vek;
+	int vek;
+	int den, mes, god, a;
 	cout << "Vvedite den\n";
 	cin >> den;
 	cout << "Vvedite mesiac\n";
@@ -13,6 +13,7 @@ int main()
 	cout << "Vvedite god\n";
 	cin >> god;
 	cout << "Vvedite vek\n";
+	cin >> vek;
 
 	god = vek * 100 + god;
 
